@@ -89,8 +89,11 @@ def cleanup():
     for r, d, f in os.walk(home):
         for file in f:
             if '.jpg' in file:
-                os.remove(file)
-                cnt += 1
+                try:
+                    os.remove(file)
+                    cnt += 1
+                except FileNotFoundError:
+                    pass
     print(f'{str(cnt)} image files cleaned')
 
 def main():
